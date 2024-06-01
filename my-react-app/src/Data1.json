@@ -1,0 +1,65 @@
+[
+    {
+        "product_id":1,
+        "product_title":"3D™ wireless headset",
+        "product_oldprice":"$30",
+        "product_newprice":"$30",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 3.png"
+    },
+    {
+        "product_id":2,
+        "product_title":"Media remote",
+        "product_oldprice":"$40",
+        "product_newprice":"$50",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 4.png"
+    },
+    {
+        "product_id":3,
+        "product_title":"HD camera",
+        "product_oldprice":"$45",
+        "product_newprice":"$60",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 5.png"
+    },
+    {
+        "product_id":4,
+        "product_title":"Guys Bomber Jacket",
+        "product_oldprice":"$70",
+        "product_newprice":"$100",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 6.png"
+    },
+    {
+        "product_id":5,
+        "product_title":"Level 20 RGB Cherry",
+        "product_oldprice":"$38",
+        "product_newprice":"$50",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 7.png"
+    },
+    {
+        "product_id":6,
+        "product_title":"Level 20 RGB Cherry",
+        "product_oldprice":"$25",
+        "product_newprice":"$40",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 8.png"
+    },
+    {
+        "product_id":7,
+        "product_title":"Logitech Streamcam",
+        "product_oldprice":"$15",
+        "product_newprice":"$20",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 9.png"
+    },
+    {
+        "product_id":8,
+        "product_title":"Bass Meets Clarity",
+        "product_oldprice":"$60",
+        "product_newprice":"$80",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 10.png"
+    },
+    {
+        "product_id":9,
+        "product_title":"Wall Mount",
+        "product_oldprice":"$30",
+        "product_newprice":"$30",
+        "product_img":"./src/assets/shop/shopnosidebar/asset 11.png"
+    }
+]
