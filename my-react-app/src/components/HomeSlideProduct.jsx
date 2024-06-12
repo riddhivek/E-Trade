@@ -1,9 +1,20 @@
-import React from 'react'
-import dataJson from '../Data.json'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick';
+import { Fade } from 'react-reveal';
+import { useDispatch, useSelector } from 'react-redux';
+import { productList } from '../redux/ProductAction';
+import { addToCart, wishlistAdd } from '../redux/action';
 
 const HomeSlideProduct = () => {
+
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.productData)
+
+    useEffect(() => {
+        dispatch(productList())
+    }, [])
+
     const settings = {
         infinite: true,
         slidesToShow: 4,
@@ -43,17 +54,19 @@ const HomeSlideProduct = () => {
                     <div className='border-b-2 border-gray-100 pb-10'>
                         <Slider ref={(c) => (slider = c)} {...settings}>
                             {
-                                dataJson.slice(4, 9).map(Data => {
+                                data.map((item => {
                                     return (
                                         <>
                                             <div className='group mb-10'>
                                                 <div className='relative overflow-hidden rounded-[35px]'>
                                                     <div>
                                                         <div className='w-[350px] h-[350px] rounded-full overflow-hidden'>
-                                                            <img className='w-[100%] h-[100%] rounded-full object-cover group-hover:scale-110 duration-200' src={Data.image} alt="" />
+                                                            <Fade big>
+                                                                <img className='w-[100%] h-[100%] rounded-full object-cover group-hover:scale-110 duration-200' src={item.image} alt="" />
+                                                            </Fade>
                                                         </div>
 
-                                                        <h1 className='absolute px-2 py- rounded-[4px] bg-[#417EF0] font-semibold text-sm text-white top-6 right-7 ' style={{ boxShadow: "0 8px 16px 0 rgba(53,119,240,.3) " }}>{Data.offer}</h1>
+                                                        <h1 className='absolute px-2 py- rounded-[4px] bg-[#417EF0] font-semibold text-sm text-white top-6 right-7' style={{ boxShadow: "0 8px 16px 0 rgba(53,119,240,.3)"}}>{item.offer}</h1>
 
                                                         <div>
                                                             <div className='flex justify-center my-6'>
@@ -65,21 +78,21 @@ const HomeSlideProduct = () => {
                                                             </div>
                                                             <div>
                                                                 <div className=' text-center'>
-                                                                    <a className='text-gray-500 font-semibold tracking-wider hover:text-[#3577F0] duration-300 cursor-pointer'>{Data.name}</a>
+                                                                    <a className='text-gray-500 font-semibold tracking-wider hover:text-[#3577F0] duration-300 cursor-pointer'>{item .name}</a>
                                                                 </div>
                                                                 <div className='flex justify-center  text-xl font-bold mt-2'>
-                                                                    <h1 className='text-[#292930] mr-3'>{Data.newprice}</h1>
-                                                                    <del className='text-gray-300'>{Data.oldprice}</del>
+                                                                    <h1 className='text-[#292930] mr-3'>${item .newprice}</h1>
+                                                                    <del className='text-gray-300'>${item .oldprice}</del>
                                                                 </div>
                                                             </div>
 
                                                             <div className='flex justify-center my-7'>
                                                                 <div className='flex items-center'>
-                                                                    <div className='hover:scale-110 duration-300 inline-block'>
-                                                                        <Link to="/Wishlist" href="" className=''><i class="fa-regular fa-heart  bg-white p-3 rounded-[4px]"></i></Link>
+                                                                    <div onClick={() => dispatch(wishlistAdd(item))} className='hover:scale-110 duration-300 inline-block'>
+                                                                        <div className=''><i class="fa-regular fa-heart  bg-white p-3 rounded-[4px]"></i></div>
                                                                     </div>
-                                                                    <div className='mx-4'>
-                                                                        <Link to="/Cart" href="#" className=" px-7 py-3 z-10 bg-[#ff497c] text-white font-bold rounded-[4px] relative 
+                                                                    <div className='mx-4' onClick={() => dispatch(addToCart(item))}>
+                                                                        <div className=" px-7 py-3 z-10 bg-[#ff497c] text-white font-bold rounded-[4px] relative 
                                                                                 before:absolute
                                                                                 before:contetn-['']
                                                                                 before:px-10
@@ -93,10 +106,10 @@ const HomeSlideProduct = () => {
                                                                                 before:-z-10
                                                                                 before:hover:scale-110
                                                                                 before:duration-300">
-                                                                            Add to Cart</Link>
+                                                                            Add to Cart</div>
                                                                     </div>
                                                                     <div className='hover:scale-110 duration-300 inline-block '>
-                                                                        <a href="#" className=''><i class="fa-regular fa-eye bg-white p-3 rounded-[4px]"></i></a>
+                                                                        <div className=''><i class="fa-regular fa-eye bg-white p-3 rounded-[4px]"></i></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -106,7 +119,7 @@ const HomeSlideProduct = () => {
                                             </div>
                                         </>
                                     )
-                                })
+                                }))
                             }
                         </Slider>
                     </div>

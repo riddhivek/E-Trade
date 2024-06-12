@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useWindowScroll } from 'react-use';
+import { useWindowScroll } from "react-use";
 
 const ScrollIndicator = () => {
     const { x, y } = useWindowScroll();

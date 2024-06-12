@@ -36,13 +36,13 @@ const Home = () => {
                     <HomeNavBar />
                 </section>
 
-                <section className='HERO-SECTION bg-[#F9F3F0] -top-36 h-[800px] relative overflow-hidden '>
+                <section className='HERO-SECTION bg-[#F9F3F0] -top-36 h-[1000px] relative overflow-hidden '>
                     <div className='BACKGROUND-IMG'>
-                        <img className='absolute right-[350px] -bottom-20' src="./src/assets/Home/asset 8.png" alt="" />
+                        <img className='absolute right-[600px] -bottom-20' src="./src/assets/Home/asset 8.png" alt="" />
                         <img className='absolute right-[100px] -bottom-12' src="./src/assets/Home/asset 9.png" alt="" />
                     
                         <div className=''>  
-                               <Swiper className="mySwiper swiper-container w-[1050px] pr-[150px]  absolute -right-[20%] top-48 z-10 "  
+                               <Swiper className="mySwiper swiper-container w-[1450px] pr-[150px]  absolute -right-[20%] top-48 z-10 "  
                                 slidesPerView={2}  
                                 onSwiper={(swiper) => console.log(swiper)}  
                                 pagination={{ clickable: true }}  

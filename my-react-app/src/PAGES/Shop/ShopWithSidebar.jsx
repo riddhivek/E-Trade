@@ -1,14 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AllTopBar } from '../../Components/AllDropdown/AllDropdownHover'
 import { AllNavBar, NavBottom } from '../../Components/AllNavbar/AllNavBar'
 import Speaker from '../../Components/Speaker'
 import SubscribePhoto from '../../Components/SubscribePhoto'
 import Footer from '../../Components/Footer/Footer'
-import dataJson from '../../Data.json'
-import { Link } from 'react-router-dom'
 import "../Shop/Check.css"
-import Slider from 'react-slick'
+import Slider from 'react-slider'
+import { useDispatch, useSelector } from 'react-redux'
+import { productList } from '../../redux/ProductAction'
+import { addToCart, wishlistAdd } from '../../redux/action'
+
+
 const ShopWithSidebar = () => {
+
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.productData)
+
+    useEffect(() => {
+        dispatch(productList())
+    }, [])
+
+
     const [isOpen1, setIsOpen1] = useState(true);
     const toggleAccordion1 = () => {
         setIsOpen1(!isOpen1);
@@ -264,7 +276,8 @@ const ShopWithSidebar = () => {
                             </div>
                         </div>
 
-                        <div className='grid col-span-3'>
+                    
+                        <div className='grid col-span-3 '>
                             <div className=' flex h-20 items-center justify-end'>
                                 <h1 className='font-semibold mr-10'>Showing 1-12 of 84 results</h1>
                                 <div className='border-[2px] border-gray-300 rounded-md inline-block'>
@@ -276,27 +289,33 @@ const ShopWithSidebar = () => {
                                     </select>
                                 </div>
                             </div>
+                            
 
                             <div className='grid grid-cols-3 gap-10 mt-10'>
                                 {
-                                    dataJson.slice(0, 9).map(Data => {
+                                    data.slice(0, 9).map((item => {
                                         return (
                                             <>
-                                                <div className='group'>
-                                                    <div className='relative overflow-hidden rounded-[35px]'>
-                                                        <div>
-                                                            <img className='w-96 h-96 object-cover group-hover:scale-110 duration-200' src={Data.image} alt="" />
+                                                <div key={item.id}>
+                                                    <div className='group mb-10'>
+                                                        <div className='relative overflow-hidden rounded-[35px]'>
+                                                            <div>
+                                                                <div>
+                                                                    <img className='w-96 h-96 object-cover group-hover:scale-110 duration-200' src={item.image} alt="" />
+                                                                </div>
 
-                                                            <h1 className='absolute px-2 py- rounded-[4px] bg-[#417EF0] font-semibold text-sm text-white top-6 right-7 ' style={{ boxShadow: "0 8px 16px 0 rgba(53,119,240,.3) " }}>{Data.offer}</h1>
+                                                                <h1 className='absolute px-2 py- rounded-[4px] bg-[#417EF0] font-semibold text-sm text-white top-6 right-7 ' style={{ boxShadow: "0 8px 16px 0 rgba(53,119,240,.3) " }}>{item.offer}</h1>
 
-                                                            <div className=' absolute left-12 -bottom-3  group-hover:bottom-10 duration-700 opacity-0 group-hover:opacity-100'>
-                                                                <div className='flex justify-center'>
-                                                                    <div className='flex items-center'>
-                                                                        <div className='hover:scale-110 duration-300 inline-block'>
-                                                                            <Link to="/Wishlist" href="" className=''><i class="fa-regular fa-heart  bg-white p-3 rounded-[4px]"></i></Link>
-                                                                        </div>
-                                                                        <div className=''>
-                                                                            <Link to="/Cart" href="#" className=" px-7 py-3 z-10 bg-[#ff497c] text-white font-bold rounded-[4px] relative 
+                                                                <div className=' absolute left-12 -bottom-3 group-hover:bottom-10 duration-700 opacity-0 group-hover:opacity-100'>
+                                                                    <div className='flex justify-center'>
+                                                                        <div className='flex items-center'>
+
+                                                                            <div onClick={() => dispatch(wishlistAdd(item))} className='hover:scale-110 duration-300 inline-block'>
+                                                                                <div><i class="fa-regular fa-heart  bg-white p-3 rounded-[4px]"></i></div>
+                                                                            </div>
+
+                                                                            <div className='mx-4' onClick={() => dispatch(addToCart(item))}>
+                                                                                <div to="/Cart" className=" px-7 py-3 z-10 bg-[#ff497c] text-white font-bold rounded-[4px] relative 
                                                                                 before:absolute
                                                                                 before:contetn-['']
                                                                                 before:px-10
@@ -310,31 +329,40 @@ const ShopWithSidebar = () => {
                                                                                 before:-z-10
                                                                                 before:hover:scale-110
                                                                                 before:duration-300">
-                                                                                Add to Cart</Link>
-                                                                        </div>
-                                                                        <div className='hover:scale-110 duration-300 inline-block '>
-                                                                            <a href="#" className=''><i class="fa-regular fa-eye bg-white p-3 rounded-[4px]"></i></a>
+                                                                                    Add to Cart</div>
+                                                                            </div>
+
+                                                                            <div className='hover:scale-110 duration-300 inline-block '>
+                                                                                <div className=''><i class="fa-regular fa-eye bg-white p-3 rounded-[4px]"></i></div>
+                                                                            </div>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div>
-                                                        <div className='mt-5'>
-                                                            <a className='text-gray-500 font-semibold tracking-wider hover:text-[#3577F0] duration-300 cursor-pointer'>{Data.name}</a>
-                                                        </div>
-                                                        <div className='flex text-xl font-bold mt-2'>
-                                                            <h1 className='text-[#292930] mr-3'>{Data.newprice}</h1>
-                                                            <del className='text-gray-300'>{Data.oldprice}</del>
+                                                        <div className=''>
+                                                            <div className='mt-5'>
+                                                                <a className='text-gray-500 font-semibold tracking-wider hover:text-[#3577F0] duration-300 cursor-pointer'>{item.name}</a>
+                                                            </div>
+                                                            <div className='flex text-xl font-bold mt-2'>
+                                                                <h1 className='text-[#292930] mr-3'>${item.newprice}</h1>
+                                                                <del className='text-gray-300'>${item.oldprice}</del>
+                                                            </div>
+                                                            <div>
+                                                                <ul className='flex items-center mt-5'>
+                                                                    <li className='bg-[#AAE6F8] h-3 w-3 mr-2 rounded-full outline outline-2 outline-offset-4 outline-[#AAE6F8] cursor-pointer'></li>
+                                                                    <li className='bg-[#5F8AF7] h-3 w-3 mx-2 rounded-full cursor-pointer'></li>
+                                                                    <li className='bg-[#59C3C0] h-3 w-3 mx-2 rounded-full cursor-pointer'></li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </>
                                         )
-                                    })
+                                    }))
                                 }
                             </div>
                             <div>
@@ -373,3 +401,4 @@ const ShopWithSidebar = () => {
 }
 
 export default ShopWithSidebar
+

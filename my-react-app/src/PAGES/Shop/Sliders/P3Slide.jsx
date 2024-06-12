@@ -55,7 +55,7 @@ export default class P3Slider extends Component {
                         </Slider>
                     </div>
 
-                    <div className="col-span-5 w-[500px]">
+                    <div className="col-span-5 w-[650px]">
                         <Slider
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}

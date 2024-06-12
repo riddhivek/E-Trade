@@ -22,13 +22,13 @@ export default class P2Slider extends Component {
             <>
                 <div className='relative z-10'>
                     <h1 className='absolute px-3 py-1 rounded-md bg-[#417EF0] font-bold text-xs text-white top-8 right-20 ' style={{ boxShadow: "0 8px 16px 0 rgba(53,119,240,.3) " }}>20% OFF</h1>
-                    <div className='absolute top-[490px] right-96'>
+                    <div className='absolute top-[490px] right-20'>
                         <a className='h-12 w-12 flex justify-center items-center bg-white rounded-full hover:bg-[#417EF0]  duration-300 hover:text-white' href="">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
                         </a>
                     </div>
                 </div>
-                <div className='grid grid-cols-5 '>
+                <div className='grid grid-cols-5 mr-28'>
                     <div className="col-span-1">
                         <Slider
                             asNavFor={this.state.nav1}
@@ -57,14 +57,15 @@ export default class P2Slider extends Component {
                             </div>
                         </Slider>
                     </div>
-                    <div className="col-span-3 w-[500px] h-[800px]">
+
+                    <div className="col-span-4 w-[600px]">
                         <Slider
                             asNavFor={this.state.nav2}
                             ref={slider => (this.slider1 = slider)}
                             arrows={false}
                         >
                             <div>
-                                <img className='rounded-lg W-full' src="./src/assets/shop/p2/asset 2.png" alt="" />
+                                <img className='rounded-lg w-full' src="./src/assets/shop/p2/asset 2.png" alt="" />
                             </div>
                             <div>
                                 <img className='rounded-lg w-full' src="./src/assets/shop/p2/asset 3.png" alt="" />

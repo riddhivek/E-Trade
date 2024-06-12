@@ -5,7 +5,7 @@ const IconDropdown1 = ({ isOpen }) => {
     return (
         <div>
             <div className={`details-menu ${isOpen ? 'open' : ''}`}>
-                <div className='absolute top-[93px] right-[130px] bg-white p-5 rounded-md shadow-md'>
+                <div className='absolute top-[93px] right-[310px] bg-white p-5 rounded-md shadow-md'>
                     <span className='text-xs'>QUICKLINKS</span>
                     <ul className='w-52 text-[17px] text-black'>
                         <li className='border-b py-3  hover:text-[#3577F0] duration-300'><Link to="/Account" href="">My Account</Link></li>
